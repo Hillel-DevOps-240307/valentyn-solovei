@@ -1,0 +1,10 @@
+Host web-demo
+	hostname 3.75.174.35
+	IdentityFile ~/.ssh/aws.pem
+	User ubuntu
+
+Host db-demo
+	hostname 192.168.0.82
+	IdentityFile ~/.ssh/aws.pem
+	ProxyJump web-demo
+	User ubuntu
