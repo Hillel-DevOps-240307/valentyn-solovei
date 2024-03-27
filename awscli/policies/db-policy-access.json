@@ -1,0 +1,14 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Resource": "arn:aws:s3:::courses-buck/db/*",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "",
+			"Effect": "Allow",
+			"Action": "ssm:GetParameter",
+			"Resource": "arn:aws:ssm:eu-central-1:730335557158:parameter/MYSQL_*"
+		},
+		{
+			"Sid": "",
+			"Effect": "Allow",
+			"Action": "ssm:DescribeParameters",
+			"Resource": "*"
+		},
+		{
+            "Sid": "",
+            "Effect": "Allow",
+            "Resource": "arn:aws:s3:::courses-buck/web/*",
+            "Action": [
+                "s3:GetObject"
+            ]
+        }
+	]
+}
