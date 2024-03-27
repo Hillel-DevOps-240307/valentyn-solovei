@@ -1,8 +1,14 @@
 ## Variables
-asdf\
-asdf\
-asdf\
-asdf
+DEFAULT_REGION\
+DB_POLICY_NAME\
+WEB_POLICY_NAME\
+DB_ROLE_NAME\
+WEB_ROLE_NAME\
+DB_INST_PROF_NAME\
+WEB_INST_PROF_NAME\
+DB_POLICY_ARN\
+WEB_POLICY_ARN\
+DB_PRIV_IP
 
 ### Create parameters
 
