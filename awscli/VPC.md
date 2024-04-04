@@ -159,6 +159,7 @@ aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block 192.168.0.64/26 \
 ```
 PUB_SUB_ID=$(aws ec2 describe-subnets --filters Name=tag:Project,Values=demo_hw-2 Name=tag:Name,Values=public-sub --query "Subnets[].SubnetId" --output text)
 ```
+
 ```
 PRIV_SUB_ID=$(aws ec2 describe-subnets --filters Name=tag:Project,Values=demo_hw-2 Name=tag:Name,Values=private-sub --query "Subnets[].SubnetId" --output text)
 ```
@@ -481,6 +482,7 @@ aws ec2 create-image \
 ```
 ACC_ID=$(aws sts get-caller-identity |jq -r .Account)
 ```
+
 ```
 END_ID=$(aws ec2 describe-vpc-endpoints --filters | jq ".VpcEndpoints[] |select(.VpcId|match(\"${VPC_ID}\")) |.VpcEndpointId"  -r)
 ```

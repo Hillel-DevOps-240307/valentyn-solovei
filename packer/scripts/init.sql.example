@@ -1,0 +1,5 @@
+CREATE USER IF NOT EXISTS '<user>'@'%' IDENTIFIED BY '<password>';
+SELECT user FROM mysql.user;
+create database <db_name>;
+grant ALL on <db_name>.* to '<user>'@'%';
+SHOW DATABASES;

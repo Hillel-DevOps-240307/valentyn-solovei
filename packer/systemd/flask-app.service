@@ -1,0 +1,16 @@
+[Unit]
+Description=flask-app service
+After=network.target
+
+[Service]
+ExecStartPre=/etc/flask-app/flask-app.sh
+EnvironmentFile=/etc/flask-app/flask-app.env
+WorkingDirectory=/home/ubuntu/flask-alb-app
+Type=simple
+Restart=no
+User=ubuntu
+ExecStart=/home/ubuntu/.local/bin/gunicorn -b 0.0.0.0 appy:app
+
+
+[Install]
+WantedBy=multi-user.target

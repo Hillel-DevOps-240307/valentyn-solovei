@@ -1,0 +1,14 @@
+variable "ami" {
+  type    = string
+  default = "${AMI_ID}"
+}
+
+variable "region" {
+  type    = string
+  default = "${region}"
+}
+
+variable "instance_size" {
+  type    = string
+  default = "${instance_type}"
+}

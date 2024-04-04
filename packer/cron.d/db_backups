@@ -1,0 +1,2 @@
+*/1 * * * * mysql /opt/db_backup.sh > /dev/null 2>&1 # every minute
+#0 1 * * * mysql /opt/db_backup.sh > /dev/null 2>&1 # at 01:00
