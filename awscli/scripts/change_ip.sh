@@ -16,5 +16,10 @@ db_ip_in_aws=$(aws ec2 describe-instances \
                 --output text) #priv db ip
 
 
-sed -i "s/$web_ip_in_ssh_conf/\thostname $web_ip_in_aws/g" ~/.ssh/config
-sed -i "s/$db_ip_in_ssh_conf/\thostname $db_ip_in_aws/g" ~/.ssh/config
+#sed -i "s/$web_ip_in_ssh_conf/\thostname $web_ip_in_aws/g" ~/.ssh/config
+#sed -i "s/$db_ip_in_ssh_conf/\thostname $db_ip_in_aws/g" ~/.ssh/config
+
+
+
+[ ! -z "$web_ip_in_aws" ] && sed -i "s/$web_ip_in_ssh_conf/\thostname $web_ip_in_aws/g" ~/.ssh/config
+[ ! -z "$db_ip_in_aws" ] &&  sed -i "s/$db_ip_in_ssh_conf/\thostname $db_ip_in_aws/g" ~/.ssh/config
