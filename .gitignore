@@ -1,2 +1,3 @@
 init.sql
 variables.pkr.hcl
+.terraform/
