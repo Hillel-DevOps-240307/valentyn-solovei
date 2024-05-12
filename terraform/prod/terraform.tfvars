@@ -1,0 +1,10 @@
+region         = "eu-central-1"
+environment    = "prod"
+key_name       = "aws"
+inst_type      = "t2.micro"
+db_sub         = "private"
+app_sub        = "public"
+db_name        = "db"
+app_name       = "app"
+self           = true
+provision_user = "ubuntu"

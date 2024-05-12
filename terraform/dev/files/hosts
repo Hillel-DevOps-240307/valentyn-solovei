@@ -1,0 +1,8 @@
+[web]
+
+dev-app1 ansible_host=3.64.216.203 ansible_user=ubuntu
+dev-app2 ansible_host=3.126.83.213 ansible_user=ubuntu
+
+[db]
+
+dev-db1 ansible_host=172.16.30.182 ansible_user=ubuntu
