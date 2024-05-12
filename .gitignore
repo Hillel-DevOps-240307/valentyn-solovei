@@ -1,3 +1,5 @@
 init.sql
 variables.pkr.hcl
-.terraform/
+.terraform*
+terraform.tfstate*
+Archive/
