@@ -7,13 +7,13 @@ variable "environment" {
 variable "vpc_id" {
     description = "vpc id"
     type = string
-    default = null
+    default = ""
 
 }
 variable "cidr_ipv4" {
   description = "cidr_ipv4 block from where connects"
   type = string
-  default = null
+  default = "0.0.0.0/0"
 }
 
 variable "egress_ports" {
@@ -31,13 +31,13 @@ variable "ingress_ports" {
 variable "egress_protocol" {
   description = "protocol for egress rule"
   type = string
-  default = null
+  default = "-1"
 }
 
 variable "ingress_protocol" {
   description = "protocol for ingress rule"
   type = string
-  default = null
+  default = "-1"
 }
 
 variable "self" {

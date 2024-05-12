@@ -25,7 +25,7 @@ variable "inst_count" {
 variable "ami_id" {
     description = "ami id to use"
     type = string
-    default = ""
+    default = null
 }
 
 variable "environment" {
