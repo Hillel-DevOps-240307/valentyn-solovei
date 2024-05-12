@@ -19,13 +19,13 @@ variable "cidr_ipv4" {
 variable "egress_ports" {
   description = "ports for egress rule"
   type = list(string)
-  default = null
+  default = []
 }
 
 variable "ingress_ports" {
   description = "ports for ingress rule"
   type = list(string)
-  default = null
+  default = []
 }
 
 variable "egress_protocol" {
