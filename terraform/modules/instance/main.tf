@@ -14,8 +14,6 @@ resource "aws_instance" "this" {
   count = var.inst_count
   ami                    = var.ami_id
   instance_type          = var.inst_type
-  #vpc_security_group_ids = [module.sg-app-dev-env.sg_id,module.sg-db-dev-env-self.sg_self_id]
-  #vpc_security_group_ids  = [for sg in var.sg_ids : sg]
   vpc_security_group_ids = local.sg_ids
   key_name               = var.key_name
   subnet_id = element(local.sub_id,count.index)

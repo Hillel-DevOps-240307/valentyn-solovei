@@ -14,5 +14,3 @@ output "instance_names" {
   value = aws_instance.this[*].tags["Name"]
 
 }
-
-#value = [ for id in aws_security_group.this-self[*].id : id ]

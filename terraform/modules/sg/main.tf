@@ -71,7 +71,6 @@ resource "aws_security_group" "this-self" {
       from_port =  var.egress_protocol != "-1" ? port.value : 0
       to_port = var.egress_protocol != "-1" ? port.value : 0
       protocol = var.egress_protocol
-      #cidr_blocks = [var.cidr_ipv4]
       self = tobool( var.self)
     }
 
