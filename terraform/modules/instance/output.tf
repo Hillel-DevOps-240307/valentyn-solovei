@@ -14,3 +14,7 @@ output "instance_names" {
   value = aws_instance.this[*].tags["Name"]
 
 }
+
+output "instance_ids" {
+  value = aws_instance.this[*].id
+}

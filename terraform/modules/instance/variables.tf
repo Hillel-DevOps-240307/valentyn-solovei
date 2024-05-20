@@ -31,7 +31,7 @@ variable "ami_id" {
 variable "environment" {
     description = "Environment"
     type = string
-    default = null
+    default = ""
 }
 variable "subnet_type" {
   description = "public/private subnet"
@@ -45,7 +45,13 @@ variable "security_group_ids" {
     default = null
 }
 
+variable "subnet_ids" {
+    description = "subnet ids"
+    type = list(string)
+    default = null
+}
+
 locals {
-  sub_id = data.terraform_remote_state.network.outputs["${var.environment}-${var.subnet_type}-subnet-ids"]
+  sub_id = var.subnet_ids
   sg_ids=var.security_group_ids
 }

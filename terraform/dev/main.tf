@@ -9,15 +9,15 @@ locals {
 }
 
 module "web-srv" {
-  inst_count         = 2
+  inst_count         = 4
   source             = "../modules/instance"
   inst_type          = var.inst_type
   inst_name          = var.app_name
   key_name           = var.key_name
   security_group_ids = local.web_sg
   ami_id             = data.aws_ami.web_ami.id
-  subnet_type        = var.app_sub
   environment        = var.environment
+  subnet_ids = data.terraform_remote_state.network.outputs["${var.environment}-${var.app_sub}-subnet-ids"]
 }
 
 module "db-srv" {
@@ -27,8 +27,8 @@ module "db-srv" {
   key_name           = var.key_name
   security_group_ids = module.sg-db-self.sg_self_id
   ami_id             = data.aws_ami.db_ami.id
-  subnet_type        = var.db_sub
   environment        = var.environment
+  subnet_ids = data.terraform_remote_state.network.outputs["${var.environment}-${var.db_sub}-subnet-ids"]
 }
 
 

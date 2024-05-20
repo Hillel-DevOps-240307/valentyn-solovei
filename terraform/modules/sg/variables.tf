@@ -41,7 +41,7 @@ variable "ingress_protocol" {
 }
 
 variable "self" {
-    description = "specify if you need to allow traffic inside group [true|false]"
+  description = "specify if you need to allow traffic inside group [true|false]"
   type = bool
   default= false
 }
