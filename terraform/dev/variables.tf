@@ -57,3 +57,9 @@ variable "provision_user" {
   type        = string
   default     = null
 }
+
+
+variable "iam_instance_profile" {
+  type    = string
+  default = "hw4_full_s3_ssm_access"
+}

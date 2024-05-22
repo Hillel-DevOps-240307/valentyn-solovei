@@ -51,6 +51,11 @@ variable "subnet_ids" {
     default = null
 }
 
+variable "iam_instance_profile" {
+  type = string
+  default = ""
+}
+
 locals {
   sub_id = var.subnet_ids
   sg_ids=var.security_group_ids

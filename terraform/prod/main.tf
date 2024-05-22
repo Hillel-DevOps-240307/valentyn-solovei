@@ -17,7 +17,7 @@ module "web-srv" {
   security_group_ids = local.web_sg
   ami_id             = data.aws_ami.web_ami.id
   environment        = var.environment
-  subnet_ids = data.terraform_remote_state.network.outputs["${var.environment}-${var.app_sub}-subnet-ids"]
+  subnet_ids         = data.terraform_remote_state.network.outputs["${var.environment}-${var.app_sub}-subnet-ids"]
 }
 
 module "db-srv" {
@@ -29,7 +29,7 @@ module "db-srv" {
   security_group_ids = module.sg-db-self.sg_self_id
   ami_id             = data.aws_ami.db_ami.id
   environment        = var.environment
-  subnet_ids = data.terraform_remote_state.network.outputs["${var.environment}-${var.app_sub}-subnet-ids"]
+  subnet_ids         = data.terraform_remote_state.network.outputs["${var.environment}-${var.app_sub}-subnet-ids"]
 }
 
 
