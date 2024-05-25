@@ -24,3 +24,11 @@ output "db_srv_private_ip" {
 output "db_srv_public_ip" {
   value = module.db-srv.public_ip
 }
+
+output "db_instance_ids" {
+  value = module.db-srv.instance_ids
+}
+
+output "web_instance_ids" {
+  value = module.web-srv.instance_ids
+}

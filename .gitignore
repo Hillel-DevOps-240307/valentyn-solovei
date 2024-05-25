@@ -3,3 +3,4 @@ variables.pkr.hcl
 .terraform*
 terraform.tfstate*
 Archive/
+.vscode/

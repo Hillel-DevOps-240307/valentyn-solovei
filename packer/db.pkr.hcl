@@ -1,18 +1,17 @@
 source "amazon-ebs" "db-app" {
-  region        = var.region
-  source_ami    = var.ami
-  instance_type = var.instance_size
-  ami_name      = "db-packer"
-  ssh_username  = "ubuntu"
-  ssh_timeout   = "20m"
+  region               = var.region
+  source_ami           = var.ami
+  instance_type        = var.instance_size
+  ami_name             = "db-packer"
+  ssh_username         = "ubuntu"
+  ssh_timeout          = "20m"
   iam_instance_profile = var.packer_profile
   tags = {
     Name    = "db_ami"
-    Courses = "hw-4"
-    Task    = "4"
+    Courses = "hw-8"
+    Task    = "8"
     Type    = "DB"
     BuiltBy = "Packer"
-
   }
 
 }
@@ -20,57 +19,12 @@ source "amazon-ebs" "db-app" {
 build {
   sources = ["source.amazon-ebs.db-app"]
 
-  provisioner "shell" {
-    script          = "scripts/db.sh"
-    execute_command = "sudo {{ .Path }}"
-  }
-
-  provisioner "file" {
-    source      = "scripts/init.sql"
-    destination = "/tmp/init.sql"
-  }
-
-  provisioner "shell" {
-    inline          = ["mysql < /tmp/init.sql"]
-    execute_command = "sudo {{ .Path }}"
-  }
-
-  provisioner "file" {
-    source      = "scripts/db_backup.sh"
-    destination = "/tmp/db_backup.sh"
-  }
-
-  provisioner "shell" {
-    inline          = ["mv /tmp/db_backup.sh /opt/db_backup.sh"]
-    execute_command = "sudo {{ .Path }}"
-  }
-
-  provisioner "shell" {
-    inline = ["chmod +x /opt/db_backup.sh"]
-  }
-
-  provisioner "file" {
-    source      = "cron.d/db_backups"
-    destination = "/tmp/db_backups"
-  }
-
-  provisioner "shell" {
-    inline          = ["mv /tmp/db_backups /etc/cron.d/db_backups"]
-    execute_command = "sudo {{ .Path }}"
-  }
-  provisioner "shell" {
-    inline          = ["chown root:root /etc/cron.d/db_backups"]
-    execute_command = "sudo {{ .Path }}"
-  }
-
-  provisioner "shell" {
-    inline = [
-      "wget -q https://amazoncloudwatch-agent.s3.amazonaws.com/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb -P /opt/",
-      "dpkg -i -E /opt/amazon-cloudwatch-agent.deb",
-      "rm -rf /opt/amazon-cloudwatch-agent.deb",
-      "/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:AmazonCloudWatch-demo-dz -s"
+  provisioner "ansible" {
+    playbook_file = "../ansible/db_install.yml"
+    extra_arguments = [
+      "--extra-vars", "mysql_user=${var.db_user} mysql_pass=${var.db_pass} mysql_db=${var.db_name}"
     ]
-    execute_command = "sudo {{ .Path }}"
+    use_proxy = false
   }
 
   post-processor "manifest" {

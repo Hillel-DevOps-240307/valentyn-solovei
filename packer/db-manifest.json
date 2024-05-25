@@ -65,7 +65,29 @@
       "custom_data": {
         "my_custom_data": "data"
       }
+    },
+    {
+      "name": "db-app",
+      "builder_type": "amazon-ebs",
+      "build_time": 1716294232,
+      "files": null,
+      "artifact_id": "eu-central-1:ami-0960855927e76ae44",
+      "packer_run_uuid": "ec8bd17c-bf55-2543-d19a-677c3e605824",
+      "custom_data": {
+        "my_custom_data": "data"
+      }
+    },
+    {
+      "name": "db-app",
+      "builder_type": "amazon-ebs",
+      "build_time": 1716296004,
+      "files": null,
+      "artifact_id": "eu-central-1:ami-0d56a515d9cd4c6dd",
+      "packer_run_uuid": "71149112-679c-8965-eabd-3e9303c74e0c",
+      "custom_data": {
+        "my_custom_data": "data"
+      }
     }
   ],
-  "last_run_uuid": "dfe1734b-2a4e-3e6c-0114-9b274a2867b5"
+  "last_run_uuid": "71149112-679c-8965-eabd-3e9303c74e0c"
 }

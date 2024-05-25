@@ -1,19 +1,7 @@
-data "terraform_remote_state" "network" {
-  backend = "s3"
-  config = {
-    encrypt        = true
-    bucket         = "courses-tf-state-bucket"
-    dynamodb_table = "terraform-state-lock-dynamo"
-    key            = "network/terraform.tfstate"
-    region         = "eu-central-1"
-  }
-}
-
-
 resource "aws_security_group" "this" {
   count = var.self ? 0 : 1
   name   = "${var.environment}-sg"
-  vpc_id = data.terraform_remote_state.network.outputs["${var.environment}-vpc-id"]
+  vpc_id = var.vpc_id
 
   dynamic "ingress" {
     iterator = port
@@ -48,7 +36,7 @@ resource "aws_security_group" "this" {
 resource "aws_security_group" "this-self" {
   count = var.self ? 1 : 0
   name   = "${var.environment}-sg-self"
-  vpc_id = data.terraform_remote_state.network.outputs["${var.environment}-vpc-id"]
+  vpc_id = var.vpc_id
 
 
   dynamic "ingress" {
