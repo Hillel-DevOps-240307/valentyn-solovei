@@ -1,45 +1,15 @@
 ---
 
+- name: Install Database
+  hosts: db
+  become: true
+  gather_facts: false
+  roles:
+    - db
+
 - name: Deploy application
   hosts: web
   gather_facts: false
-
-  tasks:
-
-  - name: Clone application
-    ansible.builtin.git:
-      repo: https://github.com/saaverdo/flask-alb-app.git
-      dest: /home/ubuntu/flask-alb-app
-      version: orm
-
-
-  - name: Install requirenments for flask-app
-    ansible.builtin.pip:
-      requirements: /home/ubuntu/flask-alb-app/requirements.txt
-
-  - name: Create service for flask-app
-    become: true
-    ansible.builtin.copy:
-      src: files/flask-app.service
-      dest: /etc/systemd/system/flask-app.service
-
-  - name: Copy environment script
-    become: true
-    ansible.builtin.copy:
-      src: files/flask-app.sh
-      dest: /usr/local/bin/flask-app.sh
-      mode: 0755
-
-  - name: Create environment file
-    become: true
-    ansible.builtin.file:
-      path: /usr/local/bin/flask-app.env
-      state: touch
-      mode: 0666
-
-  - name: Reload systemd daemon
-    become: true
-    ansible.builtin.systemd:
-      state: started
-      daemon_reload: true
-      name: flask-app
+  roles:
+    - {role: app, become: true}
+    - {role: flask_app_install}

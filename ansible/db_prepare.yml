@@ -1,0 +1,23 @@
+---
+- name: Database installation
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+
+  - name: Upgrade all packages
+    ansible.builtin.apt:
+      upgrade: yes
+      update_cache: true
+
+  - name: Install packages required by app
+    ansible.builtin.apt:
+      pkg:
+      - python3-pip
+      - mariadb-server
+      - awscli
+      update_cache: true
+  - name: Install pymysql python package
+    ansible.builtin.pip:
+      name: pymysql
