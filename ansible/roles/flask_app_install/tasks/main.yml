@@ -19,10 +19,12 @@
 
 - name: Copy environment script
   become: true
-  ansible.builtin.copy:
-    src: files/flask-app.sh
+  ansible.builtin.template:
+    src: files/flask-app.sh.j2
     dest: /usr/local/bin/flask-app.sh
     mode: 0755
+  with_items:
+    - "{{ env }}"
 
 - name: Create environment file
   become: true
@@ -34,6 +36,6 @@
 - name: Reload systemd daemon
   become: true
   ansible.builtin.systemd:
-    state: started
-    daemon_reload: true
+    state: restarted
     name: flask-app
+    daemon_reload: true

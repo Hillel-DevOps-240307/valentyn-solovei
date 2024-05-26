@@ -1,0 +1,30 @@
+---
+# tasks file for roles/db
+- ansible.builtin.include_vars:
+    ../../../environments/{{ env }}/group_vars/db.yml
+
+#### Create and Configure Database
+- name: Create a new database
+  community.mysql.mysql_db:
+    name: "{{ mysql_db }}"
+    state: present
+    login_user: "{{ master_user }}"
+    login_password: "{{ master_pass }}"
+    login_host: "{{ mysql_host }}"
+
+- name: Create database user with all privileges for database
+  community.mysql.mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{mysql_pass}}"
+    priv: "{{ mysql_db }}.*:ALL"
+    state: present
+    login_user: "{{ master_user }}"
+    login_password: "{{ master_pass }}"
+    login_host: "{{ mysql_host }}"
+
+- name: Check if database exists
+  shell: mysql -h "{{ mysql_host }}" -u "{{ master_user }}" -p"{{ master_pass }}" -e 'SHOW DATABASES;'
+  register: db_result
+
+- debug:
+    var: db_result.stdout_lines

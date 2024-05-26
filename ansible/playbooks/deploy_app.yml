@@ -11,5 +11,6 @@
   hosts: web
   gather_facts: false
   roles:
-    - {role: app, become: true}
-    - {role: flask_app_install}
+    - {role: app, become: true, tags: app}
+    - {role: db_rds, become: true, tags: db_rds, run_once: true}
+    - {role: flask_app_install, tags: flask}
