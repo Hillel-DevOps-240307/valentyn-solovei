@@ -3,22 +3,5 @@
   hosts: all
   become: true
   gather_facts: false
-
-  tasks:
-
-  - name: Upgrade all packages
-    ansible.builtin.apt:
-      upgrade: yes
-      update_cache: true
-
-  - name: Install packages required by app
-    ansible.builtin.apt:
-      pkg:
-      - git
-      - python3-pip
-      - mariadb-client
-      - default-libmysqlclient-dev
-      - build-essential
-      - pkg-config
-      - awscli
-      update_cache: true
+  roles:
+    - app

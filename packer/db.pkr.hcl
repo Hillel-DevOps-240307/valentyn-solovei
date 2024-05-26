@@ -8,8 +8,8 @@ source "amazon-ebs" "db-app" {
   iam_instance_profile = var.packer_profile
   tags = {
     Name    = "db_ami"
-    Courses = "hw-8"
-    Task    = "8"
+    Courses = "hw-9"
+    Task    = "9"
     Type    = "DB"
     BuiltBy = "Packer"
   }
@@ -24,6 +24,7 @@ build {
     extra_arguments = [
       "--extra-vars", "mysql_user=${var.db_user} mysql_pass=${var.db_pass} mysql_db=${var.db_name}"
     ]
+    ansible_env_vars= ["ANSIBLE_ROLES_PATH=../ansible/roles"]
     use_proxy = false
   }
 

@@ -9,9 +9,20 @@ data "aws_ami" "web_ami" {
 data "aws_ami" "db_ami" {
   filter {
     name   = "name"
-    values = ["db*"]
+    values = ["db-clean*"]
   }
   owners = ["self"]
+}
+
+
+data "aws_ami" "base_ami" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+  owners = [ "amazon" ]
+
 }
 
 data "terraform_remote_state" "network" {

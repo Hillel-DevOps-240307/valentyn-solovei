@@ -15,7 +15,7 @@ module "web-srv" {
   inst_name            = var.app_name
   key_name             = var.key_name
   security_group_ids   = local.web_sg
-  ami_id               = data.aws_ami.web_ami.id
+  ami_id               = data.aws_ami.base_ami.id
   environment          = var.environment
   subnet_ids           = data.terraform_remote_state.network.outputs["${var.environment}-${var.app_sub}-subnet-ids"]
   iam_instance_profile = var.iam_instance_profile

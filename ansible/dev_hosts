@@ -1,7 +1,10 @@
 [web]
 
-dev-app1 ansible_host=3.77.238.31 ansible_user=ubuntu
+dev-app1 ansible_host=18.185.25.222 ansible_user=ubuntu
 
 [db]
 
-dev-db1 ansible_host=172.16.30.128 ansible_user=ubuntu
+dev-db1 ansible_host=172.16.30.103 ansible_user=ubuntu
+
+[db:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ubuntu@dev-app1"'
