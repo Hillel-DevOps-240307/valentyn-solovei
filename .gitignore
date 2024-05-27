@@ -1,6 +1,7 @@
-init.sql
+packer/*/init.sql
 variables.pkr.hcl
 .terraform*
 terraform.tfstate*
 Archive/
 .vscode/
+db_volume/
