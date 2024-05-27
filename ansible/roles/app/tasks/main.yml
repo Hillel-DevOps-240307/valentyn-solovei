@@ -16,3 +16,7 @@
     - pkg-config
     - awscli
     update_cache: true
+
+- name: Install pymysql python package
+  ansible.builtin.pip:
+    name: pymysql

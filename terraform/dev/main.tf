@@ -33,11 +33,10 @@ module "db-srv" {
 }
 
 resource "aws_ssm_parameter" "db_host_ip" {
-  name        = "MYSQL_HOST"
+  name        = "MYSQL_HOST_${var.environment}"
   description = "The parameter description"
   type        = "String"
   value       = module.db-srv.private_ip[0]
-  overwrite   = true
 }
 
 resource "local_file" "generate_ansible_inventory" {

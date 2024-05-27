@@ -9,7 +9,7 @@ data "aws_ami" "web_ami" {
 data "aws_ami" "db_ami" {
   filter {
     name   = "name"
-    values = ["db*"]
+    values = ["db-packer"]
   }
   owners = ["self"]
 }
